@@ -26,4 +26,26 @@ public class MemberFacadeTest {
         assertThat(user1Member.getCreateDate()).isNotNull();
         assertThat(user1Member.getModifyDate()).isNotNull();
     }
+
+    @Test
+    @DisplayName("6명의 회원은 항상 존재해야 합니다.")
+    public void t002() {
+        Member systemMember = memberFacade.findByUsername("system").get();
+        assertThat(systemMember.getId()).isEqualTo(1);
+
+        Member holdingMember = memberFacade.findByUsername("holding").get();
+        assertThat(holdingMember.getId()).isEqualTo(2);
+
+        Member adminMember = memberFacade.findByUsername("admin").get();
+        assertThat(adminMember.getId()).isEqualTo(3);
+
+        Member user1Member = memberFacade.findByUsername("user1").get();
+        assertThat(user1Member.getId()).isEqualTo(4);
+
+        Member user2Member = memberFacade.findByUsername("user2").get();
+        assertThat(user2Member.getId()).isEqualTo(5);
+
+        Member user3Member = memberFacade.findByUsername("user3").get();
+        assertThat(user3Member.getId()).isEqualTo(6);
+    }
 }
