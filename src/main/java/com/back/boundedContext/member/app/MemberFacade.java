@@ -1,8 +1,7 @@
-package com.back.boundedContext.member.facade;
+package com.back.boundedContext.member.app;
 
 import com.back.boundedContext.member.domain.Member;
 import com.back.boundedContext.member.out.MemberRepository;
-import com.back.boundedContext.member.useCase.MemberJoinUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

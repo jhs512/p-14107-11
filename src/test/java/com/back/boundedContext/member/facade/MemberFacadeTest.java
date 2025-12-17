@@ -1,5 +1,6 @@
 package com.back.boundedContext.member.facade;
 
+import com.back.boundedContext.member.app.MemberFacade;
 import com.back.boundedContext.member.domain.Member;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
