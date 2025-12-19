@@ -1,4 +1,4 @@
-package com.back.boundedContext.post.domain;
+package com.back.boundedContext.market.domain;
 
 import com.back.global.jpa.entity.BaseIdAndTime;
 import jakarta.persistence.Entity;
@@ -11,13 +11,17 @@ import lombok.NoArgsConstructor;
 import static jakarta.persistence.FetchType.LAZY;
 
 @Entity
-@Table(name = "POST_POST")
+@Table(name = "MARKET_PRODUCT")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class Post extends BaseIdAndTime {
+public class Product extends BaseIdAndTime {
     @ManyToOne(fetch = LAZY)
-    private PostMember author;
-    private String title;
-    private String content;
+    private MarketMember seller;
+    private String sourceTypeCode;
+    private int sourceId;
+    private String name;
+    private String description;
+    private int price;
+    private int salePrice;
 }

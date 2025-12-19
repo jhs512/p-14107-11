@@ -10,6 +10,7 @@ import com.back.shared.member.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -61,5 +62,9 @@ public class PostFacade {
         PostChain postChain = postChainRepository.save(new PostChain(author, title));
 
         return postChain;
+    }
+
+    public List<Post> getPosts() {
+        return postRepository.findByOrderByIdDesc();
     }
 }

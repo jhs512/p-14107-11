@@ -27,4 +27,5 @@ public abstract class SourceMember extends BaseMember {
     private LocalDateTime createDate;
     @LastModifiedDate
     private LocalDateTime modifyDate;
+    private String password;
 }

@@ -13,6 +13,5 @@ import static lombok.AccessLevel.PROTECTED;
 public abstract class BaseMember {
     @Column(unique = true)
     private String username;
-    private String password;
     private String nickname;
 }

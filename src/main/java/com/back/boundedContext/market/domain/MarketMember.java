@@ -19,14 +19,12 @@ public class MarketMember extends ReplicaMember {
             LocalDateTime createDate,
             LocalDateTime modifyDate,
             String username,
-            String password,
             String nickname
     ) {
         this.setId(id);
         this.setCreateDate(createDate);
         this.setModifyDate(modifyDate);
         this.setUsername(username);
-        this.setPassword(password);
         this.setNickname(nickname);
     }
 
@@ -36,7 +34,6 @@ public class MarketMember extends ReplicaMember {
                 memberDto.createDate(),
                 memberDto.modifyDate(),
                 memberDto.username(),
-                memberDto.password(),
                 memberDto.nickname()
         );
     }
