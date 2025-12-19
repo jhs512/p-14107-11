@@ -1,10 +1,11 @@
 package com.back.boundedContext.post.in;
 
+import com.back.boundedContext.post.app.PostFacade;
 import com.back.boundedContext.post.domain.Post;
 import com.back.boundedContext.post.domain.PostChain;
 import com.back.boundedContext.post.domain.PostMember;
-import com.back.boundedContext.post.app.PostFacade;
 import com.back.standard.util.Util;
+import net.javacrumbs.shedlock.spring.annotation.SchedulerLock;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,11 +29,14 @@ public class PostDataInit {
     @Bean
     @Order(2)
     public ApplicationRunner postDataInitApplicationRunner() {
-        return args -> {
-            waitUntilBasePostMembersSynced();
-            self.makeBasePosts();
-            self.makeBasePostChains();
-        };
+        return args -> self.work();
+    }
+
+    @SchedulerLock(name = "skip:init:post:data")
+    public void work() {
+        waitUntilBasePostMembersSynced();
+        self.makeBasePosts();
+        self.makeBasePostChains();
     }
 
     private void waitUntilBasePostMembersSynced() {

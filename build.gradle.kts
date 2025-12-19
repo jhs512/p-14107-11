@@ -33,6 +33,12 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-webmvc")
+    implementation("org.springframework.boot:spring-boot-starter-session-data-redis")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+
+    // ShedLock - 분산 스케줄러 락
+    implementation("net.javacrumbs.shedlock:shedlock-spring:6.3.0")
+    implementation("net.javacrumbs.shedlock:shedlock-provider-redis-spring:6.3.0")
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     developmentOnly("org.springframework.boot:spring-boot-docker-compose")

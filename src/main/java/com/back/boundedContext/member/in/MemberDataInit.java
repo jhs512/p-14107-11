@@ -2,6 +2,7 @@ package com.back.boundedContext.member.in;
 
 import com.back.boundedContext.member.app.MemberFacade;
 import com.back.boundedContext.member.domain.Member;
+import net.javacrumbs.shedlock.spring.annotation.SchedulerLock;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,9 +26,12 @@ public class MemberDataInit {
     @Bean
     @Order(1)
     public ApplicationRunner memberDataInitApplicationRunner() {
-        return args -> {
-            self.makeBaseMembers();
-        };
+        return args -> self.work();
+    }
+
+    @SchedulerLock(name = "skip-overlap:init:member:data")
+    public void work() {
+        self.makeBaseMembers();
     }
 
     @Transactional

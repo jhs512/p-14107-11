@@ -6,6 +6,7 @@ import com.back.boundedContext.market.domain.Product;
 import com.back.shared.post.dto.PostDto;
 import com.back.shared.post.out.PostApiClient;
 import com.back.standard.util.Util;
+import net.javacrumbs.shedlock.spring.annotation.SchedulerLock;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,10 +31,13 @@ public class MarketDataInit {
     @Bean
     @Order(3)
     public ApplicationRunner marketDataInitApplicationRunner() {
-        return args -> {
-            waitUntilBaseMarketMembersSynced();
-            self.makeBaseProducts();
-        };
+        return args -> self.work();
+    }
+
+    @SchedulerLock(name = "skip:init:member:data")
+    public void work() {
+        waitUntilBaseMarketMembersSynced();
+        self.makeBaseProducts();
     }
 
     private void waitUntilBaseMarketMembersSynced() {
